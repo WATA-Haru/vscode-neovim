@@ -11,3 +11,28 @@ if not vim.g.vscode then
     vim.cmd('syntax enable')
     vim.opt.number = true
 end
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.fn.isdirectory(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup()
+
+-- You need to define the plugins and opts for lazy.setup or use directly
+-- For example, to use Comment.nvim
+require("lazy").setup({
+    {
+        "numToStr/Comment.nvim",
+	lazy = false,
+    }
+})
+
+
