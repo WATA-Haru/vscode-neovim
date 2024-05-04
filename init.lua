@@ -13,26 +13,39 @@ if not vim.g.vscode then
 end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.fn.isdirectory(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
+    "--branch=stable", -- latest stable release
     lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup()
 
--- You need to define the plugins and opts for lazy.setup or use directly
--- For example, to use Comment.nvim
-require("lazy").setup({
+--require("lazy").setup({
+--  "folke/which-key.nvim",
+--  { "folke/neoconf.nvim", cmd = "Neoconf" },
+--  "folke/neodev.nvim",
+--})
+
+require("lazy").setup("plugins")
+--    {
+--	"numToStr/Comment.nvim",
+--	lazy = false,
+--    },
     {
-        "numToStr/Comment.nvim",
-	lazy = false,
-    }
+        "Diogo-ss/42-header.nvim",
+        lazy = false,
+        config = function()
+            local header = require("42header")
+            header.setup({
+                default_map = true, -- default Mapping <F1> in normal mode
+                auto_update = true,  -- update header when saving
+                user = "hwatahik",
+                mail = "hwatahik@student.42tokyo.jp"
+            })
+        end
 })
-
-
