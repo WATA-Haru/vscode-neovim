@@ -4,15 +4,14 @@ local opts = { noremap = true, silent = true }
 vim.opt.langmenu = 'en_US.UTF-8'
 vim.cmd('language message en_US.UTF-8')
 vim.opt.clipboard = 'unnamedplus'
-vim.g.mapleader = ""
 
 map('i', 'jk', '<ESC>', opts)
 
 map('n', '<C-Q>', '<C-V>', opts)
-map("n", "<leader>h", "^", opts)
-map("n", "<leader>l", "$", opts)
-map("v", "<leader>h", "^", opts)
-map("v", "<leader>l", "$", opts)
+map("n", "<C-h>", "^", opts)
+map("n", "<C-l>", "$", opts)
+map("v", "<C-h>", "^", opts)
+map("v", "<C-l>", "$", opts)
 
 map("n", "+", "<C-a>", opts)
 map("n", "-", "<C-x>", opts)
