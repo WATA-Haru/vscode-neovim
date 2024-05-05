@@ -8,10 +8,10 @@ vim.opt.clipboard = 'unnamedplus'
 map('i', 'jk', '<ESC>', opts)
 
 map('n', '<C-Q>', '<C-V>', opts)
-map("n", "<C-h>", "^", opts)
-map("n", "<C-l>", "$", opts)
-map("v", "<C-h>", "^", opts)
-map("v", "<C-l>", "$", opts)
+map("n", "<S-h>", "^", opts)
+map("n", "<S-l>", "$", opts)
+map("v", "<S-h>", "^", opts)
+map("v", "<S-l>", "$", opts)
 
 map("n", "+", "<C-a>", opts)
 map("n", "-", "<C-x>", opts)
