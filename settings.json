@@ -1,0 +1,33 @@
+{
+    "vscode-neovim.neovimExecutablePaths.win32": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
+    "vscode-neovim.neovimInitVimPaths.darwin": "~\\AppData\\Local\\nvim\\init.lua",
+     "extensions.experimental.affinity": {
+         "asvetliakov.vscode-neovim": 1
+     },
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+          "command": "vscode-neovim.escape",
+        }
+    },
+    "workbench.colorTheme": "Nord",
+    "editor.wordWrap": "on",
+    "editor.wordWrapColumn": 100,
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": true,
+    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    //TODO
+    // file tree
+    // カーソル移動をNERDTreeと同じかんじに
+    "workbench.list.defaultFindMode": "filter",
+    "workbench.list.typeNavigationMode": "automatic",
+    // ファイルプレビューは無効化(開かれたファイルタブを永続化)
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    // macrosプラグインを使って、ファイルを開くと同時にサイドバーを閉じるコマンドを登録
+    "macros": {
+        "selectAndToggleSidebar": [
+            "list.select",
+            "workbench.action.toggleSidebarVisibility"
+        ]
+    },
+}
