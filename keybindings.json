@@ -1,0 +1,183 @@
+// Place your key bindings in this file to override the defaults
+[
+    // ## Memo <ctrl+q> remap visual block failed
+    // ## tab move settings
+    // shift+h is ^ and shift+l is $ (init.lua)
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.nextEditor",
+        "when": "!terminalFocus && !sideBarFocus && neovim.mode != insert"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.previousEditor",
+        "when": "!terminalFocus && !sideBarFocus && neovim.mode !== insert '"
+    },
+
+    // ## lsp definition
+    // gd, f12 use system default(editor.action.revealDefinition)
+    {
+        "key": "g d",
+        "command": "editor.action.revealDefinition",
+        "when": "neovim.mode == normal && editorHasDefinitionProvider && editorTextFocus"
+    },
+    {
+        "key": "f12",
+        "command": "-editor.action.revealDefinition",
+        "when": "neovim.mode == normal && editorHasDefinitionProvider && editorTextFocus"
+    },
+    // https://zenn.dev/masaphil/articles/0daf775c215e58
+    // setting your favorite go definition remap
+    {
+        "key": "g b",
+        "command": "workbench.action.navigateBack",
+        "when": "neovim.mode == normal && editorTextFocus",
+    },
+    {
+        "key": "shift+k",
+        "command": "editor.action.showHover",
+        "when": "neovim.mode == normal && editorTextFocus",
+    },
+    // same as gd, gb
+    //{
+    //    "key": "space b",
+    //    "command": "workbench.action.navigateBack",
+    //    "when": "neovim.mode == normal && editorTextFocus",
+    //},
+    //{
+    //    "key": "space d",
+    //    "command": "editor.action.goToDeclaration",
+    //    "when": "neovim.mode == normal && editorTextFocus",
+    //},
+
+    // ## explore settings
+    // explorer: focus file tree <space e>
+    // // if editorTextFocus and neovim.mode != insert dont exist
+    // // neovim recognize <space> as key bindings
+    {
+        "key": "space e",
+        "command": "workbench.files.action.focusFilesExplorer",
+        "when": "neovim.mode !== insert && !filesExplorerFocus && editorTextFocus"
+    },
+    {
+        "key": "space e",
+        "command": "workbench.action.closeSidebar",
+        "when": "neovim.mode !== insert && filesExplorerFocus"
+    },
+    // explorer: open
+    {
+        "key": "Enter",
+        "command": "macros.selectAndToggleSidebar",
+        "when": "explorerViewletFocus && explorerViewletVisible && !explorerResourceIsFolder && !inputFocus"
+    },
+    {
+        "key": "t",
+        "command": "macros.selectAndToggleSidebar",
+        "when": "explorerViewletFocus && explorerViewletVisible && !explorerResourceIsFolder && !inputFocus"
+    },
+    // explorer: move
+    {
+        "key": "Enter",
+        "command": "list.toggleExpand",
+        "when": "explorerViewletFocus && explorerViewletVisible && explorerResourceIsFolder && !inputFocus"
+    },
+    // explorer change file name
+    {
+        "key": "shift+r",
+        "command": "renameFile",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // copy file
+    {
+        "key": "shift+c",
+        "command": "filesExplorer.copy",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // paste file and dir
+    {
+        "key": "shift+p",
+        "command": "filesExplorer.paste",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // make a new file
+    {
+        "key": "shift+n",
+        "command": "explorer.newFile",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // delete file
+    {
+        "key": "shift-d",
+        "command": "deleteFile",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // make a new dir
+    {
+        "key": "shift+k",
+        "command": "explorer.newFolder",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // move dir
+    {
+        "key": "shift+m",
+        "command": "filesExplorer.cut",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    
+    // ## terminal settings (like my tmux)
+    // panel(bottombar): toggle
+    // memo <ctrl-1> is terminal to editor command
+    {
+        "key": "ctrl+space ctrl+space",
+        "command": "workbench.action.togglePanel"
+    },
+    // panel(bottombar): focus
+    {
+        "key": "ctrl+f t",
+        "command": "workbench.action.terminal.focus"
+    },
+    // focus debug console
+    {
+        "key": "ctrl+f d",
+        "command": "workbench.debug.action.focusRepl"
+    },
+    // fucous output panel
+    {
+        "key": "ctrl+f o",
+        "command": "workbench.panel.output.focus"
+    },
+    // move problems
+    {
+        "key": "ctrl+f p",
+        "command": "workbench.panel.markers.view.focus"
+    },
+    // terminal: new
+    {
+        "key": "ctrl+f c",
+        "command": "workbench.action.terminal.new"
+    },
+    // terminal: move
+    {
+        "key": "ctrl+f l",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+f h",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus"
+    },
+    // terminal: kill
+    {
+        "key": "ctrl+f x",
+        "command": "workbench.action.terminal.kill",
+        "when": "terminalFocus"
+    },
+    // remap ctrl=f key ctrl+f key.
+    // because I use ctrl+f for using terminal
+    {
+        "key": "ctrl+f ctrl+f space",
+        "command": "vscode-neovim.ctrl-f",
+        "when": "editorTextFocus && neovim.ctrlKeysNormal.f && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+]
