@@ -1,10 +1,20 @@
+local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
--- vscode neovim and neovim common settings
 vim.opt.langmenu = 'en_US.UTF-8'
 vim.cmd('language message en_US.UTF-8')
-vim.api.nvim_set_keymap('i', 'jk', '<ESC>', opts)
 vim.opt.clipboard = 'unnamedplus'
+
+map('i', 'jk', '<ESC>', opts)
+
+map('n', '<C-Q>', '<C-V>', opts)
+map("n", "<C-h>", "^", opts)
+map("n", "<C-l>", "$", opts)
+map("v", "<C-h>", "^", opts)
+map("v", "<C-l>", "$", opts)
+
+map("n", "+", "<C-a>", opts)
+map("n", "-", "<C-x>", opts)
 
 if not vim.g.vscode then
     -- only Neovim
@@ -25,27 +35,28 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
---require("lazy").setup({
---  "folke/which-key.nvim",
---  { "folke/neoconf.nvim", cmd = "Neoconf" },
---  "folke/neodev.nvim",
---})
+local plugins = {
+	{
+	    "kylechui/nvim-surround",
+	    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+	    event = "VeryLazy",
+	    config = function()
+		    require("nvim-surround").setup()
+	    end
+    	},
+	{
+	    "Diogo-ss/42-header.nvim",
+	    lazy = false,
+	    config = function()
+		    local header = require("42header")
+		    header.setup({
+		            default_map = true, -- default Mapping <F1> in normal mode
+		            auto_update = true,  -- update header when saving
+		            user = "hwatahik",
+		            mail = "hwatahik@student.42tokyo.jp"
+		    })
+		end
+	}
+}
 
-require("lazy").setup("plugins")
---    {
---	"numToStr/Comment.nvim",
---	lazy = false,
---    },
-    {
-        "Diogo-ss/42-header.nvim",
-        lazy = false,
-        config = function()
-            local header = require("42header")
-            header.setup({
-                default_map = true, -- default Mapping <F1> in normal mode
-                auto_update = true,  -- update header when saving
-                user = "hwatahik",
-                mail = "hwatahik@student.42tokyo.jp"
-            })
-        end
-})
+require('lazy').setup(plugins, {})

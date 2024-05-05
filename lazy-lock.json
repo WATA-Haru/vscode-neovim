@@ -1,4 +1,5 @@
 {
   "42-header.nvim": { "branch": "main", "commit": "2ee2c876c5c976b7236cd756c66a068e5ccaea4c" },
-  "lazy.nvim": { "branch": "main", "commit": "bef521ac89c8d423f9d092e37b58e8af0c099309" }
+  "lazy.nvim": { "branch": "main", "commit": "bef521ac89c8d423f9d092e37b58e8af0c099309" },
+  "nvim-surround": { "branch": "main", "commit": "6d0dc3dbb557bcc6a024969da461df4ba803fc48" }
 }
