@@ -1,3 +1,4 @@
+-- core setting
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
@@ -15,12 +16,6 @@ map("v", "<S-l>", "$", opts)
 
 map("n", "+", "<C-a>", opts)
 map("n", "-", "<C-x>", opts)
-
-if not vim.g.vscode then
-    -- only Neovim
-    vim.cmd('syntax enable')
-    vim.opt.number = true
-end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -58,5 +53,61 @@ local plugins = {
 		end
 	}
 }
-
 require('lazy').setup(plugins, {})
+
+
+-- vscode only
+-- gk, gj etc.. mapping like neovim
+-- https://zenn.dev/januswel/articles/bf117ede3f5091
+if vim.g.vscode then
+  local vscode = require('vscode-neovim')
+  local mappings = {
+    up = 'k',
+    down = 'j',
+    wrappedLineStart = '0',
+    wrappedLineFirstNonWhitespaceCharacter = '^',
+    wrappedLineEnd = '$',
+  }
+
+  local function moveCursor(to, select)
+    return function()
+      local mode = vim.api.nvim_get_mode()
+      if mode.mode == 'V' or mode.mode == '' then
+        return mappings[to]
+      end
+
+      vscode.action('cursorMove', {
+        args = {
+          {
+            to = to,
+            by = 'wrappedLine',
+            value = vim.v.count1,
+            select = select
+          },
+        },
+      })
+      return '<Ignore>'
+    end
+  end
+
+  vim.keymap.set('n', 'k', moveCursor('up'), { expr = true })
+  vim.keymap.set('n', 'j', moveCursor('down'), { expr = true })
+  vim.keymap.set('n', '0', moveCursor('wrappedLineStart'), { expr = true })
+  vim.keymap.set('n', '^', moveCursor('wrappedLineFirstNonWhitespaceCharacter'), { expr = true })
+  vim.keymap.set('n', '$', moveCursor('wrappedLineEnd'), { expr = true })
+
+  vim.keymap.set('v', 'k', moveCursor('up', true), { expr = true })
+  vim.keymap.set('v', 'j', moveCursor('down', true), { expr = true })
+  vim.keymap.set('v', '0', moveCursor('wrappedLineStart', true), { expr = true })
+  vim.keymap.set('v', '^', moveCursor('wrappedLineFirstNonWhitespaceCharacter', true), { expr = true })
+  vim.keymap.set('v', '$', moveCursor('wrappedLineEnd', true), { expr = true })
+end
+
+
+-- neovim only
+if not vim.g.vscode then
+    -- only Neovim
+    vim.cmd('syntax enable')
+    vim.opt.number = true
+end
+
