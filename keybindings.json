@@ -187,27 +187,27 @@
     },
 		// gj, gk g0, g^ g$ settings
 	  {
-        "key": "gk",
+        "key": "g k",
         "command": "cursorUp",
-        "when": "editorTextFocus && neovim.mode == normal"
+        "when": "editorTextFocus && neovim.mode != 'insert'"
     },
     {
-        "key": "gj",
+        "key": "g j",
         "command": "cursorDown",
-        "when": "editorTextFocus && neovim.mode == normal"
+        "when": "editorTextFocus && neovim.mode != 'insert'"
     },
 		{
-        "key": "g0",
+        "key": "g 0",
         "command": "cursorHome",
-        "when": "editorTextFocus && neovim.mode == normal"
+        "when": "editorTextFocus && neovim.mode != 'insert'"
     },
     {
-        "key": "g^",
+        "key": "g ^",
         "command": "cursorHomeSelect",
-        "when": "editorTextFocus && neovim.mode == normal"
+        "when": "editorTextFocus && neovim.mode != 'insert'"
     },
     {
-        "key": "g$",
+        "key": "g $",
         "command": "cursorEnd",
         "when": "editorTextFocus && neovim.mode == normal"
     }
