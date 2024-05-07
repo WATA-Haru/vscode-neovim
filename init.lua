@@ -7,16 +7,15 @@ vim.cmd('language message en_US.UTF-8')
 vim.opt.clipboard = 'unnamedplus'
 
 map('i', 'jk', '<ESC>', opts)
-
 map('n', '<C-Q>', '<C-V>', opts)
 map("n", "<S-h>", "^", opts)
 map("n", "<S-l>", "$", opts)
 map("v", "<S-h>", "^", opts)
 map("v", "<S-l>", "$", opts)
-
 map("n", "+", "<C-a>", opts)
 map("n", "-", "<C-x>", opts)
 
+-- plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -69,27 +68,49 @@ if vim.g.vscode then
     wrappedLineEnd = '$',
   }
 
+  -- it cannot move like 11j and 103k
+  --local function moveCursor(to, select)
+  --  return function()
+  --    local mode = vim.api.nvim_get_mode()
+  --    if mode.mode == 'V' or mode.mode == '' then
+  --      return mappings[to]
+  --    end
+
+  --    vscode.action('cursorMove', {
+  --      args = {
+  --        {
+  --          to = to,
+  --          by = 'wrappedLine',
+  --          value = vim.v.count1,
+  --          select = select
+  --        },
+  --      },
+  --    })
+  --    return '<Ignore>'
+  --  end
+  --end
+
   local function moveCursor(to, select)
     return function()
-      local mode = vim.api.nvim_get_mode()
-      if mode.mode == 'V' or mode.mode == '' then
-        return mappings[to]
-      end
+        local count = vim.v.count > 0 and vim.v.count or 1
+        local mode = vim.api.nvim_get_mode().mode
 
-      vscode.action('cursorMove', {
-        args = {
-          {
-            to = to,
-            by = 'wrappedLine',
-            value = vim.v.count1,
-            select = select
-          },
-        },
-      })
-      return '<Ignore>'
-    end
+        if mode == 'V' or mode == '' then
+            for i = 1, count do
+                vscode.action('cursorMove', {
+                    args = {
+                        to = to,
+                        by = 'wrappedLine',
+                        select = select
+                    },
+                })
+            end
+            return '<Ignore>'
+        else
+            return mappings[to]:rep(count)
+        end
+	end
   end
-
   vim.keymap.set('n', 'k', moveCursor('up'), { expr = true })
   vim.keymap.set('n', 'j', moveCursor('down'), { expr = true })
   vim.keymap.set('n', '0', moveCursor('wrappedLineStart'), { expr = true })
