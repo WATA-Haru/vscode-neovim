@@ -180,4 +180,9 @@
         "command": "vscode-neovim.ctrl-f",
         "when": "editorTextFocus && neovim.ctrlKeysNormal.f && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
     },
+    {
+        "key": "g g",
+        "command": "cursorTop",
+        "when": "editorTextFocus && neovim.mode != 'insert'"
+    },
 ]
