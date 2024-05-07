@@ -185,4 +185,30 @@
         "command": "cursorTop",
         "when": "editorTextFocus && neovim.mode != 'insert'"
     },
+		// gj, gk g0, g^ g$ settings
+	  {
+        "key": "gk",
+        "command": "cursorUp",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+    {
+        "key": "gj",
+        "command": "cursorDown",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+		{
+        "key": "g0",
+        "command": "cursorHome",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+    {
+        "key": "g^",
+        "command": "cursorHomeSelect",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+    {
+        "key": "g$",
+        "command": "cursorEnd",
+        "when": "editorTextFocus && neovim.mode == normal"
+    }
 ]

@@ -56,87 +56,11 @@ require('lazy').setup(plugins, {})
 
 
 -- vscode only
--- gk, gj etc.. mapping like neovim
 -- https://zenn.dev/januswel/articles/bf117ede3f5091
-if vim.g.vscode then
-  local vscode = require('vscode-neovim')
-  local mappings = {
-    up = 'k',
-    down = 'j',
-    wrappedLineStart = '0',
-    wrappedLineFirstNonWhitespaceCharacter = '^',
-    wrappedLineEnd = '$',
-  }
 
-  -- it cannot move like 11j and 103k
-  local function g_moveCursor(to, select)
-    return function()
-      local mode = vim.api.nvim_get_mode()
-      if mode.mode == 'V' or mode.mode == '' then
-        return mappings[to]
-      end
+--if vim.g.vscode then
 
-      vscode.action('cursorMove', {
-        args = {
-          {
-            to = to,
-            by = 'wrappedLine',
-            value = vim.v.count1,
-            select = select
-          },
-        },
-      })
-      return '<Ignore>'
-    end
-  end
-
-  local function moveCursor(to, select)
-    return function()
-        local count = vim.v.count > 0 and vim.v.count or 1
-        local mode = vim.api.nvim_get_mode().mode
-
-        if mode == 'V' or mode == '' then
-            for i = 1, count do
-                vscode.action('cursorMove', {
-                    args = {
-			value = vim.v.count1,
-                        to = to,
-                        by = 'wrappedLine',
-                        select = select
-                    },
-                })
-            end
-            return '<Ignore>'
-        else
-            return mappings[to]:rep(count)
-        end
-	end
-  end
-  vim.keymap.set('n', 'k', moveCursor('up'), { expr = true })
-  vim.keymap.set('n', 'j', moveCursor('down'), { expr = true })
-  vim.keymap.set('n', '0', moveCursor('wrappedLineStart'), { expr = true })
-  vim.keymap.set('n', '^', moveCursor('wrappedLineFirstNonWhitespaceCharacter'), { expr = true })
-  vim.keymap.set('n', '$', moveCursor('wrappedLineEnd'), { expr = true })
-
-  vim.keymap.set('v', 'k', moveCursor('up', true), { expr = true })
-  vim.keymap.set('v', 'j', moveCursor('down', true), { expr = true })
-  vim.keymap.set('v', '0', moveCursor('wrappedLineStart', true), { expr = true })
-  vim.keymap.set('v', '^', moveCursor('wrappedLineFirstNonWhitespaceCharacter', true), { expr = true })
-  vim.keymap.set('v', '$', moveCursor('wrappedLineEnd', true), { expr = true })
-
-  vim.keymap.set('n', 'gk', g_moveCursor('up'), { expr = true })
-  vim.keymap.set('n', 'gj', g_moveCursor('down'), { expr = true })
-  vim.keymap.set('n', 'g0', g_moveCursor('wrappedLineStart'), { expr = true })
-  vim.keymap.set('n', 'g^', g_moveCursor('wrappedLineFirstNonWhitespaceCharacter'), { expr = true })
-  vim.keymap.set('n', 'g$', g_moveCursor('wrappedLineEnd'), { expr = true })
-
-  vim.keymap.set('v', 'gk', g_moveCursor('up', true), { expr = true })
-  vim.keymap.set('v', 'j', moveCursor('down', true), { expr = true })
-  vim.keymap.set('v', '0', moveCursor('wrappedLineStart', true), { expr = true })
-  vim.keymap.set('v', '^', moveCursor('wrappedLineFirstNonWhitespaceCharacter', true), { expr = true })
-  vim.keymap.set('v', '$', moveCursor('wrappedLineEnd', true), { expr = true })
-end
-
+--end
 
 -- neovim only
 if not vim.g.vscode then
