@@ -33,12 +33,6 @@
         "command": "workbench.action.navigateBack",
         "when": "neovim.mode == normal && editorTextFocus",
     },
-    {
-        "key": "shift+k",
-        "command": "editor.action.showHover",
-        "when": "neovim.mode == normal && editorTextFocus",
-    },
-    // same as gd, gb
     //{
     //    "key": "space b",
     //    "command": "workbench.action.navigateBack",
@@ -49,6 +43,11 @@
     //    "command": "editor.action.goToDeclaration",
     //    "when": "neovim.mode == normal && editorTextFocus",
     //},
+    {
+        "key": "shift+k",
+        "command": "editor.action.showHover",
+        "when": "neovim.mode == normal && editorTextFocus",
+    },
 
     // ## explore settings
     // explorer: focus file tree <space e>
@@ -65,11 +64,11 @@
         "when": "neovim.mode !== insert && filesExplorerFocus"
     },
     // explorer: open
-    {
-        "key": "Enter",
-        "command": "macros.selectAndToggleSidebar",
-        "when": "explorerViewletFocus && explorerViewletVisible && !explorerResourceIsFolder && !inputFocus"
-    },
+    //{
+    //    "key": "Enter",
+    //    "command": "macros.selectAndToggleSidebar",
+    //    "when": "explorerViewletFocus && explorerViewletVisible && !explorerResourceIsFolder && !inputFocus"
+    //},
     {
         "key": "t",
         "command": "macros.selectAndToggleSidebar",
@@ -185,30 +184,31 @@
         "command": "cursorTop",
         "when": "editorTextFocus && neovim.mode != 'insert'"
     },
-		// gj, gk g0, g^ g$ settings
-	  {
+    {
         "key": "g k",
         "command": "cursorUp",
-        "when": "editorTextFocus && neovim.mode != 'insert'"
+        "when": "editorTextFocus && neovim.mode != insert"
     },
     {
         "key": "g j",
         "command": "cursorDown",
-        "when": "editorTextFocus && neovim.mode != 'insert'"
+        "when": "editorTextFocus && neovim.mode != insert"
     },
-		{
+    {
         "key": "g 0",
         "command": "cursorHome",
-        "when": "editorTextFocus && neovim.mode != 'insert'"
+        "when": "editorTextFocus && neovim.mode != insert"
     },
     {
-        "key": "g ^",
+        //"key": "g ^",
+        "key": "g shift+6",
         "command": "cursorHomeSelect",
-        "when": "editorTextFocus && neovim.mode != 'insert'"
+        "when": "editorTextFocus && neovim.mode != insert"
     },
     {
-        "key": "g $",
+        //"key": "g $",
+        "key": "g shift+4",
         "command": "cursorEnd",
-        "when": "editorTextFocus && neovim.mode == normal"
+        "when": "editorTextFocus && neovim.mode != insert"
     }
 ]
