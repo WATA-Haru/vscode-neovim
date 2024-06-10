@@ -1,33 +1,47 @@
 {
-    "vscode-neovim.neovimExecutablePaths.win32": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
-    "vscode-neovim.neovimInitVimPaths.darwin": "~\\AppData\\Local\\nvim\\init.lua",
-     "extensions.experimental.affinity": {
-         "asvetliakov.vscode-neovim": 1
-     },
-    "vscode-neovim.compositeKeys": {
-        "jk": {
-          "command": "vscode-neovim.escape",
-        }
+    "files.autoSave": "afterDelay",
+    "workbench.editorAssociations": {
+        "*.zlib": "default"
     },
-    "workbench.colorTheme": "Nord",
-    "editor.wordWrap": "on",
-    "editor.wordWrapColumn": 100,
+    "editor.inlineSuggest.enabled": true,
     "editor.renderWhitespace": "all",
-    "editor.renderControlCharacters": true,
-    "editor.fontFamily": "Consolas, 'Courier New', monospace",
-    //TODO
-    // file tree
-    // カーソル移動をNERDTreeと同じかんじに
-    "workbench.list.defaultFindMode": "filter",
-    "workbench.list.typeNavigationMode": "automatic",
-    // ファイルプレビューは無効化(開かれたファイルタブを永続化)
-    "workbench.editor.enablePreview": false,
-    "workbench.editor.enablePreviewFromQuickOpen": false,
-    // macrosプラグインを使って、ファイルを開くと同時にサイドバーを閉じるコマンドを登録
-    "macros": {
-        "selectAndToggleSidebar": [
-            "list.select",
-            "workbench.action.toggleSidebarVisibility"
-        ]
+    "editor.insertSpaces": false,
+    "editor.comments.insertSpace": false,
+    "42header.username": "hwatahik",
+    "42header.email": "hwatahik@student.42tokyo.jp",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    "vscode-neovim.neovimExecutablePaths.darwin": "/Users/hwatahik/nvim-macos/bin/nvim",
+    "vscode-neovim.neovimInitVimPaths.darwin": "/Users/hwatahik/vscode-neovim/init.lua",
+
+    //from vscode neovim
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
     },
+    //   "vscode-neovim.compositeKeys": {
+    //       "jk": {
+    //         "command": "vscode-neovim.escape",
+    //       }
+    //   },
+   "workbench.colorTheme": "Nordfox",
+   "editor.wordWrap": "on",
+   "editor.wordWrapColumn": 100,
+   "editor.renderControlCharacters": true,
+   //"editor.fontFamily": "Consolas, 'Courier New', monospace",
+   "workbench.list.defaultFindMode": "filter",
+   "workbench.list.typeNavigationMode": "automatic",
+   // ファイルプレビューは無効化(開かれたファイルタブを永続化)
+   "workbench.editor.enablePreview": false,
+   "workbench.editor.enablePreviewFromQuickOpen": false,
+   // macrosプラグインを使って、ファイルを開くと同時にサイドバーを閉じるコマンドを登録
+   "macros": {
+       "selectAndToggleSidebar": [
+           "list.select",
+           "workbench.action.toggleSidebarVisibility"
+       ]
+},
+"window.zoomLevel": 2,
 }

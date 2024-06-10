@@ -1,38 +1,76 @@
-// Place your key bindings in this file to override the defaults
+// Place your key bindings in this file to override the defaultsauto[]
 [
-    // ## Memo <ctrl+q> remap visual block failed
-    // ## tab move settings
-    // shift+h is ^ and shift+l is $ (init.lua)
-    {
-        "key": "ctrl+l",
-        "command": "workbench.action.nextEditor",
-        "when": "!terminalFocus && !sideBarFocus && neovim.mode != insert"
-    },
-    {
-        "key": "ctrl+h",
-        "command": "workbench.action.previousEditor",
-        "when": "!terminalFocus && !sideBarFocus && neovim.mode !== insert '"
-    },
+	//{
+	//	"key": "ctrl+r",
+	//	"command": "-workbench.action.quickOpenNavigateNextInRecentFilesPicker",
+	//	"when": "inQuickOpen && inRecentFilesPicker"
+	//},
+	//{
+	//	"key": "ctrl+r",
+	//	"command": "-workbench.action.terminal.runRecentCommand",
+	//	"when": "accessibilityModeEnabled && terminalFocus && terminalHasBeenCreated || accessibilityModeEnabled && terminalFocus && terminalProcessSupported"
+	//},
+	//{
+	//	"key": "ctrl+r",
+	//	"command": "-workbench.action.openRecent"
+	//},
+	//{
+	//	"key": "ctrl+r",
+	//	"command": "-extension.vim_ctrl+r",
+	//	"when": "editorTextFocus && vim.active && vim.use<C-r> && !inDebugRepl"
+	//},
 
-    // ## lsp definition
-    // gd, f12 use system default(editor.action.revealDefinition)
+    // old version
     {
-        "key": "g d",
-        "command": "editor.action.revealDefinition",
-        "when": "neovim.mode == normal && editorHasDefinitionProvider && editorTextFocus"
+    "command": "vscode-neovim.compositeEscape1",
+    "key": "j",
+    "when": "neovim.mode == insert",
+    "args": "j",
     },
     {
-        "key": "f12",
-        "command": "-editor.action.revealDefinition",
-        "when": "neovim.mode == normal && editorHasDefinitionProvider && editorTextFocus"
+    "command": "vscode-neovim.compositeEscape2",
+    "key": "k",
+    "when": "neovim.mode == insert",
+    "args": "k",
     },
-    // https://zenn.dev/masaphil/articles/0daf775c215e58
-    // setting your favorite go definition remap
-    {
+	// ## tab move settings
+	// shift+h is ^ and shift+l is $ (init.lua)
+	{
+		"key": "ctrl+l",
+		"command": "workbench.action.nextEditor",
+		"when": "!terminalFocus && !sideBarFocus && neovim.mode != insert"
+	},
+	{
+		"key": "ctrl+h",
+		"command": "workbench.action.previousEditor",
+		"when": "!terminalFocus && !sideBarFocus && neovim.mode !== insert '"
+	},
+	// ## lsp definition
+	// gd, f12 use system default(editor.action.revealDefinition)
+	{
+		"key": "g d",
+		"command": "editor.action.revealDefinition",
+		"when": "neovim.mode == normal && editorHasDefinitionProvider && editorTextFocus"
+	},
+	{
+		"key": "f12",
+		"command": "-editor.action.revealDefinition",
+		"when": "neovim.mode == normal && editorHasDefinitionProvider && editorTextFocus"
+    }
+    ,
+	// https://zenn.dev/masaphil/articles/0daf775c215e58
+	// setting your favorite go definition remap
+	{
         "key": "g b",
         "command": "workbench.action.navigateBack",
         "when": "neovim.mode == normal && editorTextFocus",
     },
+    {
+        "key": "shift+k",
+        "command": "editor.action.showHover",
+        "when": "neovim.mode == normal && editorTextFocus",
+    },
+    // same as gd, gb
     //{
     //    "key": "space b",
     //    "command": "workbench.action.navigateBack",
@@ -43,11 +81,6 @@
     //    "command": "editor.action.goToDeclaration",
     //    "when": "neovim.mode == normal && editorTextFocus",
     //},
-    {
-        "key": "shift+k",
-        "command": "editor.action.showHover",
-        "when": "neovim.mode == normal && editorTextFocus",
-    },
 
     // ## explore settings
     // explorer: focus file tree <space e>
@@ -64,11 +97,11 @@
         "when": "neovim.mode !== insert && filesExplorerFocus"
     },
     // explorer: open
-    //{
-    //    "key": "Enter",
-    //    "command": "macros.selectAndToggleSidebar",
-    //    "when": "explorerViewletFocus && explorerViewletVisible && !explorerResourceIsFolder && !inputFocus"
-    //},
+    {
+        "key": "Enter",
+        "command": "macros.selectAndToggleSidebar",
+        "when": "explorerViewletFocus && explorerViewletVisible && !explorerResourceIsFolder && !inputFocus"
+    },
     {
         "key": "t",
         "command": "macros.selectAndToggleSidebar",
@@ -122,7 +155,7 @@
         "command": "filesExplorer.cut",
         "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
     },
-    
+
     // ## terminal settings (like my tmux)
     // panel(bottombar): toggle
     // memo <ctrl-1> is terminal to editor command
@@ -182,33 +215,32 @@
     {
         "key": "g g",
         "command": "cursorTop",
-        "when": "editorTextFocus && neovim.mode != 'insert'"
+        "when": "neovim.mode !== insert && editorTextFocus"
     },
+    // gj, gk g0, g^ g$ settings
     {
         "key": "g k",
         "command": "cursorUp",
-        "when": "editorTextFocus && neovim.mode != insert"
+        "when": "editorTextFocus && neovim.mode != 'insert'"
     },
     {
         "key": "g j",
         "command": "cursorDown",
-        "when": "editorTextFocus && neovim.mode != insert"
+        "when": "editorTextFocus && neovim.mode != 'insert'"
     },
     {
         "key": "g 0",
         "command": "cursorHome",
-        "when": "editorTextFocus && neovim.mode != insert"
+        "when": "editorTextFocus && neovim.mode != 'insert'"
     },
     {
-        //"key": "g ^",
         "key": "g shift+6",
         "command": "cursorHomeSelect",
-        "when": "editorTextFocus && neovim.mode != insert"
+        "when": "editorTextFocus && neovim.mode != 'insert'"
     },
     {
-        //"key": "g $",
         "key": "g shift+4",
         "command": "cursorEnd",
-        "when": "editorTextFocus && neovim.mode != insert"
+        "when": "editorTextFocus && neovim.mode == normal"
     }
 ]
