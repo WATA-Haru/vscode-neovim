@@ -180,6 +180,11 @@
         "when": "editorTextFocus && neovim.ctrlKeysNormal.f && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
     },
     {
+        "key": "ctrl+f shift+\\",
+        "command": "workbench.action.terminal.split",
+        "when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
+    },
+    {
         "key": "g g",
         "command": "cursorTop",
         "when": "editorTextFocus && neovim.mode != 'insert'"
